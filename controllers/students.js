@@ -1,5 +1,5 @@
 // Connects to the Google Sheets Document
-const connectGoggleSheets = require('../config/googleSheetsData');
+const students = require('../config/googleSheetsData');
 
 const Student = require('../model/Student');
 
@@ -9,7 +9,6 @@ const Student = require('../model/Student');
 
 exports.getStudents = async (req, res, next) => {
   try {
-    const students = await connectGoggleSheets({}, 'show');
     await res.render('index', { title: 'Students', students });
   } catch (error) {
     console.log(error);
@@ -21,7 +20,6 @@ exports.getStudents = async (req, res, next) => {
 // @access Public
 exports.getStudentById = async (req, res, next) => {
   try {
-    const students = await connectGoggleSheets({}, 'show');
     const hasStudent = students.some(student => student.id === req.params.id);
     if (hasStudent) {
       const filtered = students.filter(student => student.id === req.params.id);
@@ -30,7 +28,7 @@ exports.getStudentById = async (req, res, next) => {
       res.status(400).json(`There is no student with id ${req.params.id}.`); //Bad Request status
     }
   } catch (error) {
-    res.status(400).json(`There is no student with id ${req.params.id}.`); //Bad Request status
+    console.log(error);
   }
 };
 
