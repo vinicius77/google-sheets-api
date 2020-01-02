@@ -1,0 +1,28 @@
+<h1 class="text-center mb-3">Create {{title}}</h1>
+<form action="/api/students/create/new/student" method="POST" class="mb-4">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" name="studentname" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="gender">Gender</label>
+        <input type="text" name="gender" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="classlevel">Level</label>
+        <input type="text" name="classlevel" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="homestate">Home</label>
+        <input type="text" name="homestate" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="major">Major</label>
+        <input type="text" name="major" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="extracurricularactivity">Extra Curricular</label>
+        <input type="text" name="extracurricularactivity" class="form-control">
+    </div>
+    <input type="submit" class="btn btn-primary btn-block" value="Add Student"></input>
+</form>

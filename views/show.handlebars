@@ -1,0 +1,21 @@
+<h1 class="text-center">Students</h1>
+<a href="/api/students/create/new" class="btn btn-primary">Create</a>
+
+<ul class=" list-group">
+    {{#each filtered}}
+    <li class="list-group-item text-right">
+        <strong>ID:</strong> {{this.id}}
+        <strong>Name:</strong> {{this.studentname}}
+        <strong>Gender:</strong> {{this.gender}}
+        <strong>Level:</strong> {{this.classlevel}}
+        <strong>Home:</strong> {{this.homestate}}
+        <strong>Major:</strong> {{this.major}}
+        <strong>Extra Curricular:</strong> {{this.extracurricularactivity}}
+        <a href="/api/students/update/{{this.id}}" class=" btn btn-success">EDIT</a>
+        <a href="/api/students/delete/{{this.id}}" class="btn btn-danger">X</a>
+    </li>
+
+    {{/each}}
+</ul>
+
+<a href="/api/students" class="btn btn-dark mt-4 mb-4">Check Students</a>
