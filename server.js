@@ -15,6 +15,7 @@ app.set('view engine', 'handlebars');
 
 // Body Parser Middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: false })); //Alows Send JSON in post requests
 
 // CORS Middleware
 app.use(cors());

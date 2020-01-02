@@ -1,6 +1,8 @@
 // Connects to the Google Sheets Document
-const students = require('../config/googleSheetsData');
-
+const GoogleMethods = require('../config/googleSheetsData');
+const students = GoogleMethods.students;
+const uuid = require('uuid');
+const handleActions = GoogleMethods.connectGoggleSheets;
 const Student = require('../model/Student');
 
 // @desc GET All Students
@@ -38,9 +40,31 @@ exports.getStudentById = async (req, res, next) => {
 
 exports.addStudent = async (req, res, next) => {
   try {
-    console.log('POST');
-    res.send(req.body);
+    const newStudent = {
+      id: uuid.v4(),
+      studentname: req.body.studentname,
+      gender: req.body.gender,
+      major: req.body.major,
+      homestate: req.body.homestate,
+      classlevel: req.body.classlevel,
+      extracurricularactivity: req.body.extracurricularactivity
+    };
+
+    if (!newStudent.studentname) {
+      return res
+        .status(400)
+        .json({ message: 'Please insert at least your name!' });
+    }
+    await handleActions(newStudent, 'create');
+    res.redirect('/api/v2/students');
   } catch (error) {
     console.log(error);
   }
+};
+
+// @desc  GET Create Student Layout
+// @route POST /api/v2/create
+// @access Public
+exports.createStudent = (req, res, next) => {
+  res.render('create', { title: 'Students' });
 };
