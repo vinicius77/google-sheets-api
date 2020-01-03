@@ -3,8 +3,12 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const handlebars = require('express-handlebars');
+const methodOverride = require('method-override');
 
 const app = express();
+
+// Middleware that allow Using PUT and DELETE requests coming from HTML forms
+app.use(methodOverride('_method'));
 
 // Loads the Environment Variables
 dotenv.config({ path: './config/config.env' });

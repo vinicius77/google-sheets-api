@@ -19,7 +19,7 @@ router.route('/create').get(createStudent);
 router
   .route('/edit/:id')
   .get(editStudent)
-  .post(updateStudent);
+  .put(updateStudent);
 
 router.route('/:id').get(getStudentById);
 

@@ -85,7 +85,7 @@ exports.editStudent = async (req, res, next) => {
 // @desc  PUT Update Student
 // @route PUT /api/v2/edit/:id
 // @access Public
-exports.updateStudent = (req, res, next) => {
+exports.updateStudent = async (req, res, next) => {
   const hasStudent = students.some(student => student.id === req.params.id);
   if (hasStudent) {
     const updatedStudent = req.body;
