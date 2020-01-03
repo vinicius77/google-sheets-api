@@ -4,7 +4,9 @@ const {
   getStudents,
   getStudentById,
   addStudent,
-  createStudent
+  createStudent,
+  editStudent,
+  updateStudent
 } = require('../controllers/students');
 
 router
@@ -13,6 +15,11 @@ router
   .post(addStudent);
 
 router.route('/create').get(createStudent);
+
+router
+  .route('/edit/:id')
+  .get(editStudent)
+  .post(updateStudent);
 
 router.route('/:id').get(getStudentById);
 

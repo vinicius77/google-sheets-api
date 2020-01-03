@@ -1,5 +1,5 @@
 <h1 class="text-center">Students</h1>
-<a href="/api/students/create/new" class="btn btn-primary">Create</a>
+<a href="/api/v2/students/create" class="btn btn-primary">Create</a>
 
 <ul class=" list-group">
     {{#each filtered}}
@@ -11,11 +11,11 @@
         <strong>Home:</strong> {{this.homestate}}
         <strong>Major:</strong> {{this.major}}
         <strong>Extra Curricular:</strong> {{this.extracurricularactivity}}
-        <a href="/api/students/update/{{this.id}}" class=" btn btn-success">EDIT</a>
-        <a href="/api/students/delete/{{this.id}}" class="btn btn-danger">X</a>
+        <a href="/api/v2/students/edit/{{this.id}}" class="btn btn-success">EDIT</a>
+        <a href="/api/v2/students/{{this.id}}" class="btn btn-danger">X</a>
     </li>
 
     {{/each}}
 </ul>
 
-<a href="/api/students" class="btn btn-dark mt-4 mb-4">Check Students</a>
+<a href="/api/v2/students" class="btn btn-dark mt-4 mb-4">Check Students</a>

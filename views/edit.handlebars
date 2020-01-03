@@ -1,6 +1,6 @@
 <h1 class="text-center mb-3">Edit {{title}}</h1>
 {{#each foundStudent}}
-<form action="/api/students/{{id}}" method="POST" class="mb-4">
+<form action="/api/v2/students/edit/{{id}}" method="POST" class="mb-4">
     <div class="form-group">
         <label for="name">Name</label>
         <input type="text" name="studentname" value="{{studentname}}" class="form-control">

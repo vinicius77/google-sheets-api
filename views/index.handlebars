@@ -11,9 +11,8 @@
         <strong>Home:</strong> {{this.homestate}}
         <strong>Major:</strong> {{this.major}}
         <strong>Extra Curricular:</strong> {{this.extracurricularactivity}}
-        <a href="/api/v2/students" class="btn btn-success">EDIT</a>
+        <a href="/api/v2/students/edit/{{this.id}}" class="btn btn-success">EDIT</a>
         <a href="/api/v2/students/{{this.id}}" class="btn btn-danger">X</a>
-
     </li>
     {{/each}}
 </ul>
