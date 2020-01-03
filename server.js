@@ -5,6 +5,7 @@ const cors = require('cors');
 const handlebars = require('express-handlebars');
 const methodOverride = require('method-override');
 
+// Creates the server
 const app = express();
 
 // Middleware that allow Using PUT and DELETE requests coming from HTML forms

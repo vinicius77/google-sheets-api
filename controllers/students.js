@@ -119,3 +119,22 @@ exports.updateStudent = async (req, res, next) => {
     res.status(400).json(`There is no student with id ${req.params.id}.`);
   }
 };
+
+// @desc  DELETE Student
+// @route DELETE /api/v2/students/delete/:id
+// @access Public
+exports.deleteStudent = async (req, res, next) => {
+  const hasStudent = students.some(student => student.id === req.params.id);
+
+  if (hasStudent) {
+    students.forEach(student => {
+      if (student.id === req.params.id) {
+        handleActions(student, 'delete');
+        students.shift();
+        res.redirect(`/api/v2/students`);
+      }
+    });
+  } else {
+    res.status(400).json(`There is no student with id ${req.params.id}.`);
+  }
+};
