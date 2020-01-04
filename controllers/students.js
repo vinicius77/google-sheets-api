@@ -24,7 +24,11 @@ exports.getStudentById = async (req, res, next) => {
     const hasStudent = students.some(student => student.id === req.params.id);
     if (hasStudent) {
       const filtered = students.filter(student => student.id === req.params.id);
-      res.render('show', { title: 'Students', filtered });
+      res.render('show', {
+        title: 'Students',
+        filtered,
+        message: 'User Was Updated Successfully!'
+      });
     } else {
       res.status(400).json(`There is no student with id ${req.params.id}.`); //Bad Request status
     }
@@ -132,7 +136,11 @@ exports.deleteStudent = async (req, res, next) => {
       if (student.id === req.params.id) {
         handleActions(student, 'delete');
         students.shift();
-        res.redirect(`/api/v2/students`);
+        res.render('index', {
+          title: 'Students',
+          students,
+          message: 'User Was Successfully Removed!'
+        });
       }
     });
   } else {

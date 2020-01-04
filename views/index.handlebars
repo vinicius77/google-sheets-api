@@ -1,8 +1,14 @@
-<h1 class="text-center">Students</h1>
+<h1 class="text-center">{{title}}</h1>
 <a href="/api/v2/students/create" class="btn btn-primary m-8">Create</a>
 
 <ul class=" list-group">
+    {{#if message}}
+    <div class="alert alert-success m-4" role="alert">
+        {{message}}
+    </div>
+    {{/if}}
     {{#each students }}
+
     <form action="/api/v2/students/delete/{{this.id}}?_method=DELETE" method="post" class="mb-4">
 
         <li class="list-group-item text-right">
