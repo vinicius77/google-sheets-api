@@ -50,9 +50,10 @@ exports.addStudent = async (req, res, next) => {
     };
 
     if (!newStudent.studentname) {
-      return res
-        .status(400)
-        .json({ message: 'Please insert at least your name!' });
+      return res.render('create', {
+        title: 'Create Student',
+        error: 'Please, Insert At Least Your Name!'
+      });
     }
     await handleActions(newStudent, 'create');
     res.redirect('/api/v2/students');

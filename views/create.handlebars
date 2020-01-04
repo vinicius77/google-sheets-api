@@ -1,5 +1,10 @@
-<h1 class="text-center mb-3">Create {{title}}</h1>
+<h1 class="text-center mb-3">Create {{title}} </h1>
 <form action="/api/v2/students" method="POST" class="mb-4">
+    {{#if error}}
+    <div class="alert alert-warning" role="alert">
+        {{error}}
+    </div>
+    {{/if}}
     <div class="form-group">
         <label for="name">Name</label>
         <input type="text" name="studentname" class="form-control">
