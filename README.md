@@ -59,6 +59,14 @@ $ npm install
 
 This project uses npm
 
+## Endpoints
+
+- **GET:** api/v2/students
+- **GET:** api/v2/students/:id
+- **POST:** api/v2/students/create/id:
+- **PUT:** api/v2/students/update/:id
+- **DELETE:** api/v2/students/delete/:id
+
 ## Built Using
 
 - [Visual Code Studio](https://code.visualstudio.com/) - Free. Built on open source. Runs everywhere.
@@ -75,6 +83,7 @@ This project uses npm
 - Google-Spreadsheets
 - Method-Override
 - UUID
+- Bootstrap
 
 ## Contributing
 
