@@ -55,17 +55,29 @@ $ npm install
 
 - You can learn more in the [Node Package Manager documentation](https://docs.npmjs.com/cli/install)
 
+### Running
+
+```shell
+$ npm run dev
+```
+
 ## Deployment
 
 This project uses npm
 
 ## Endpoints
 
+### Students
+
 - **GET:** api/v2/students
 - **GET:** api/v2/students/:id
 - **POST:** api/v2/students/create/id:
 - **PUT:** api/v2/students/update/:id
 - **DELETE:** api/v2/students/delete/:id
+
+### Auth
+
+**GET** /auth
 
 ## Built Using
 
