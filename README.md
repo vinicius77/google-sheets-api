@@ -79,6 +79,17 @@ This project uses npm
 
 **GET** /auth
 
+## Important!
+
+- You need to create and add your own credentials from your Google Cloud Platform into config/client_keys_json.
+- You need to create a config/config.env file and add the URI to access the Google Sheet file.
+- In order to fetch the correct data from the Google Sheet, inside of the config/googleSheets.js you need to insert the right values of **x** that are respectively the tab you want to access and starting from which line:
+
+```shell
+data.worksheets[x]
+offset:  x
+```
+
 ## Built Using
 
 - [Visual Code Studio](https://code.visualstudio.com/) - Free. Built on open source. Runs everywhere.
