@@ -3,7 +3,6 @@ const GoogleMethods = require('../config/googleSheetsData');
 const students = GoogleMethods.students;
 const uuid = require('uuid');
 const handleActions = GoogleMethods.connectGoggleSheets;
-const Student = require('../model/Student');
 
 // @desc GET All Students
 // @route GET /api/v2/students

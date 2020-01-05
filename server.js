@@ -25,6 +25,9 @@ app.use(express.urlencoded({ extended: false })); //Alows Send JSON in post requ
 // CORS Middleware
 app.use(cors());
 
+// Link to auth routes
+app.use('/auth', require('./routes/auth'));
+
 // Link to students routes
 app.use('/api/v2/students', require('./routes/students'));
 
