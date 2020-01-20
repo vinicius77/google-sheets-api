@@ -31,7 +31,7 @@ app.use('/auth', require('./routes/auth'));
 // Link to students routes
 app.use('/api/v2/students', require('./routes/students'));
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () =>
   console.log(
