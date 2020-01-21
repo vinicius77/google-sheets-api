@@ -9,6 +9,7 @@ import {
   NavLink,
   Container
 } from 'reactstrap';
+import StudentsList from './StudentsList';
 
 class AppNavbar extends React.Component {
   constructor(props) {
@@ -43,6 +44,7 @@ class AppNavbar extends React.Component {
             </Collapse>
           </Container>
         </Navbar>
+        <StudentsList />
       </React.Fragment>
     );
   }
