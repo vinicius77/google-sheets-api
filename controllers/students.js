@@ -9,7 +9,8 @@ const handleActions = GoogleMethods.connectGoggleSheets;
 // @access Public
 exports.getStudents = async (req, res, next) => {
   try {
-    await res.render('index', { title: 'Students', students });
+    // await res.render('index', { title: 'Students', students });
+    return res.json(students);
   } catch (error) {
     console.log(error);
   }
