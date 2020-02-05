@@ -3,15 +3,24 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AppNavbar from './components/AppNavbar';
 import StudentsList from './components/StudentsList';
+import About from './components/About';
+
 import Footer from './components/Footer';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 function App() {
   return (
-    <div className='App'>
-      <AppNavbar />
-      <StudentsList />
-      <Footer />
-    </div>
+    <Router>
+      <div className='App'>
+        <AppNavbar />
+        <Switch>
+          <Route path='/' exact component={StudentsList} />
+          <Route path='/about' exact component={About} />
+        </Switch>
+
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

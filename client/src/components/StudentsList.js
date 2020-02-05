@@ -34,6 +34,10 @@ const StudentsList = () => {
 
   return (
     <React.Fragment>
+      <a href='/' className='btn btn-primary mb-3'>
+        Create
+      </a>
+
       {students.map(student => (
         <Student
           key={student.id}
