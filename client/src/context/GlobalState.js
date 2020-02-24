@@ -36,8 +36,14 @@ export const GlobalProvider = ({ children }) => {
     dispatch({ type: 'DELETE_STUDENT', payload: id });
   };
 
+  const addStudent = student => {
+    dispatch({ type: 'ADD_STUDENT', payload: student });
+  };
+
   return (
-    <GlobalContext.Provider value={{ students: state.students, deleteStudent }}>
+    <GlobalContext.Provider
+      value={{ students: state.students, deleteStudent, addStudent }}
+    >
       {children}
     </GlobalContext.Provider>
   );
