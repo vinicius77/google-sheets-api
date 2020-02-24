@@ -12,7 +12,6 @@ const CreateStudent = () => {
 
   const onSubmitHandler = event => {
     event.preventDefault();
-
     const newStudent = {
       id: uuid.v4(),
       ...student
@@ -80,11 +79,9 @@ const CreateStudent = () => {
           />
         </div>
 
-        <input
-          type="submit"
-          className="btn btn-primary btn-block"
-          value="Add Student"
-        />
+        <button type="submit" className="btn btn-primary btn-block">
+          Add Student
+        </button>
       </form>
     </React.Fragment>
   );
