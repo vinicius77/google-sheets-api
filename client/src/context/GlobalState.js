@@ -31,8 +31,13 @@ export const GlobalContext = createContext(initialState);
 export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(StudentReducer, initialState);
 
+  // Actions
+  const deleteStudent = id => {
+    dispatch({ type: 'DELETE_STUDENT', payload: id });
+  };
+
   return (
-    <GlobalContext.Provider value={{ students: state.students }}>
+    <GlobalContext.Provider value={{ students: state.students, deleteStudent }}>
       {children}
     </GlobalContext.Provider>
   );
