@@ -8,19 +8,25 @@ import CreateStudent from './components/CreateStudent';
 import Footer from './components/Footer';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+import { GlobalProvider } from './context/GlobalState';
+import StudentsListComponent from './components/StudentsListComponent';
+
 function App() {
   return (
-    <Router>
-      <div className='App'>
-        <AppNavbar />
-        <Switch>
-          <Route path='/' exact component={StudentsList} />
-          <Route path='/create' exact component={CreateStudent} />
-        </Switch>
+    <GlobalProvider>
+      <Router>
+        <div className="App">
+          <AppNavbar />
+          <Switch>
+            <Route path="/" exact component={StudentsList} />
+            <Route path="/dummy" component={StudentsListComponent} />
+            <Route path="/create" exact component={CreateStudent} />
+          </Switch>
 
-        <Footer />
-      </div>
-    </Router>
+          <Footer />
+        </div>
+      </Router>
+    </GlobalProvider>
   );
 }
 
