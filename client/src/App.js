@@ -7,7 +7,7 @@ import Footer from './components/Footer';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { GlobalProvider } from './context/GlobalState';
-import StudentsListComponent from './components/StudentsListComponent';
+import StudentsList from './components/StudentsList';
 
 function App() {
   return (
@@ -16,9 +16,8 @@ function App() {
         <div className="App">
           <AppNavbar />
           <Switch>
-            <Route path="/" component={StudentsListComponent} />
+            <Route path="/" component={StudentsList} />
           </Switch>
-
           <Footer />
         </div>
       </Router>

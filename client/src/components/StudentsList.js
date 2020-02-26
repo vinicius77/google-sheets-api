@@ -1,54 +1,37 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import Student from './Student';
+import React, { useContext, useEffect } from 'react';
+import { GlobalContext } from '../context/GlobalState';
+import StudentComponent from './StudentComponent';
+import Loading from './Loading';
 
 const StudentsList = () => {
-  const [errorMessage, setErrorMessage] = useState('');
-  const [students, setStudents] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { students, getStudents, error, loading } = useContext(GlobalContext);
 
   useEffect(() => {
     getStudents();
-  }, [loading]);
-
-  const getStudents = async () => {
-    await axios
-      .get('http://localhost:5000/api/v2/students')
-      .then(response => {
-        console.log(response.data);
-        setStudents(response.data);
-      })
-      .then(setLoading(false))
-      .catch(error => {
-        setErrorMessage(error);
-      });
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (loading) {
-    return <div>... Loading</div>;
+    return (
+      <React.Fragment>
+        <Loading />
+      </React.Fragment>
+    );
   }
 
-  if (errorMessage) {
-    return <div>Error: {errorMessage}</div>;
+  if (error) {
+    return <div>Error: {error}</div>;
   }
 
   return (
     <React.Fragment>
-      <a href="/" className="btn btn-primary mb-3">
-        Create
-      </a>
+      <h3>Dummy Students</h3>
 
-      {students.map(student => (
-        <Student
-          key={student.id}
-          name={student.studentname}
-          gender={student.gender}
-          level={student.classlevel}
-          homestate={student.homestate}
-          major={student.major}
-          extracurricular={student.extracurricularactivity}
-        />
-      ))}
+      <ul>
+        {students.map(student => (
+          <StudentComponent key={student.id} student={student} />
+        ))}
+      </ul>
     </React.Fragment>
   );
 };
