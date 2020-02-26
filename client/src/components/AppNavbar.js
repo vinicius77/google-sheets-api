@@ -30,14 +30,19 @@ class AppNavbar extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Navbar color='dark' dark expand='sm' className='mb-5'>
+        <Navbar color="dark" dark expand="sm" className="mb-5">
           <Container>
-            <NavbarBrand href='/'>Google Sheets API</NavbarBrand>
+            <NavbarBrand href="/">Google Sheets API</NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
-              <Nav className='ml-auto' navbar>
+              <Nav className="mr-auto" navbar>
                 <NavItem>
-                  <NavLink href='https://github.com/kako77sub'>Github</NavLink>
+                  <NavLink href="/">Home</NavLink>
+                </NavItem>
+              </Nav>
+              <Nav className="ml-auto" navbar>
+                <NavItem>
+                  <NavLink href="https://github.com/kako77sub">Github</NavLink>
                 </NavItem>
               </Nav>
             </Collapse>

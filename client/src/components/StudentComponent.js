@@ -12,7 +12,7 @@ const StudentComponent = ({ student }) => {
         <strong> Level:</strong> {student.classlevel}
         <strong> Home:</strong> {student.homestate}
         <strong> Major: </strong> {student.major}
-        <strong> Extra Curricular:</strong> {student.extracurricular}
+        <strong> Extra Curricular:</strong> {student.extracurricularactivity}
         <button
           type="submit"
           className="btn btn-danger ml-3"

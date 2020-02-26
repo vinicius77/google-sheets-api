@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import { Container, ListGroup, ListGroupItem, Button, Label } from 'reactstrap';
 import axios from 'axios';
 import Student from './Student';
 
@@ -16,6 +15,7 @@ const StudentsList = () => {
     await axios
       .get('http://localhost:5000/api/v2/students')
       .then(response => {
+        console.log(response.data);
         setStudents(response.data);
       })
       .then(setLoading(false))

@@ -32,6 +32,10 @@ export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(StudentReducer, initialState);
 
   // Actions
+
+  const getStudents = () => {
+    dispatch({ type: 'GET_STUDENTS' });
+  };
   const deleteStudent = id => {
     dispatch({ type: 'DELETE_STUDENT', payload: id });
   };
@@ -42,7 +46,12 @@ export const GlobalProvider = ({ children }) => {
 
   return (
     <GlobalContext.Provider
-      value={{ students: state.students, deleteStudent, addStudent }}
+      value={{
+        students: state.students,
+        deleteStudent,
+        addStudent,
+        getStudents
+      }}
     >
       {children}
     </GlobalContext.Provider>
