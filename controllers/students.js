@@ -10,9 +10,14 @@ const handleActions = GoogleMethods.connectGoggleSheets;
 exports.getStudents = async (req, res, next) => {
   try {
     // await res.render('index', { title: 'Students', students });
-    return res.json(students);
+    return res
+      .status(200)
+      .json({ success: true, count: students.length, data: students });
   } catch (error) {
-    console.log(error);
+    return res.status(500).json({
+      success: false,
+      error: `Server Error: ${error.message}`
+    });
   }
 };
 
@@ -33,7 +38,10 @@ exports.getStudentById = async (req, res, next) => {
       res.status(400).json(`There is no student with id ${req.params.id}.`); //Bad Request status
     }
   } catch (error) {
-    console.log(error);
+    return res.status(500).json({
+      success: false,
+      error: `Server Error: ${error.message}`
+    });
   }
 };
 
@@ -54,7 +62,7 @@ exports.addStudent = async (req, res, next) => {
     };
 
     if (!newStudent.studentname) {
-      return res.render('create', {
+      return res.status(400).render('create', {
         title: 'Create Student',
         error: 'Please, Insert At Least Your Name!'
       });
@@ -62,7 +70,10 @@ exports.addStudent = async (req, res, next) => {
     await handleActions(newStudent, 'create');
     res.redirect('/api/v2/students');
   } catch (error) {
-    console.log(error);
+    return res.status(500).json({
+      success: false,
+      error: `Server Error: ${error.message}`
+    });
   }
 };
 

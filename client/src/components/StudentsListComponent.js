@@ -1,14 +1,13 @@
 import React, { useContext, useEffect } from 'react';
 import { GlobalContext } from '../context/GlobalState';
 import StudentComponent from './StudentComponent';
-import CreateStudent from './CreateStudent';
 
 const StudentsListComponent = () => {
-  const { students } = useContext(GlobalContext);
-  const { getStudents } = useContext(GlobalContext);
+  const { students, getStudents } = useContext(GlobalContext);
 
   useEffect(() => {
     getStudents();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -20,7 +19,6 @@ const StudentsListComponent = () => {
           <StudentComponent key={student.id} student={student} />
         ))}
       </ul>
-      <CreateStudent />
     </React.Fragment>
   );
 };

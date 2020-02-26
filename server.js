@@ -19,7 +19,7 @@ app.engine('handlebars', handlebars({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 // Body Parser Middleware
-app.use(express.json());
+app.use(express.json()); //Allows to use body parser (Sending an object in the body of a post request)
 app.use(express.urlencoded({ extended: false })); //Alows Send JSON in post requests
 
 // https://enable-cors.org/server_expressjs.html
@@ -40,11 +40,9 @@ app.use(function(req, res, next) {
 // CORS Middleware
 app.use(cors());
 
-// Link to auth routes
-app.use('/auth', require('./routes/auth'));
-
 // Link to students routes
-app.use('/api/v2/students', require('./routes/students'));
+const students = require('./routes/students');
+app.use('/api/v2/students', students);
 
 const PORT = process.env.PORT || 5000;
 

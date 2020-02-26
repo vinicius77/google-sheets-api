@@ -1,27 +1,11 @@
 import React, { createContext, useReducer } from 'react';
 import StudentReducer from './StudentReducer';
+import axios from 'axios';
 
 const initialState = {
-  students: [
-    {
-      id: 1,
-      studentname: 'Vinicius',
-      gender: 'Male',
-      classlevel: '1. Junior',
-      homestate: 'SP',
-      major: 'BsC',
-      extracurricularactivity: 'Football'
-    },
-    {
-      id: 2,
-      studentname: 'Hanna',
-      gender: 'Female',
-      classlevel: '2. Sophmore',
-      homestate: 'HE',
-      major: 'Business',
-      extracurricularactivity: 'Games'
-    }
-  ]
+  students: [],
+  error: null,
+  loading: true
 };
 
 // Create Context
@@ -33,9 +17,15 @@ export const GlobalProvider = ({ children }) => {
 
   // Actions
 
-  const getStudents = () => {
-    dispatch({ type: 'GET_STUDENTS' });
+  const getStudents = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/api/v2/students');
+      dispatch({ type: 'GET_STUDENTS', payload: response.data.data });
+    } catch (error) {
+      dispatch({ type: 'GET_ERROR', payload: `Error: ${error}` });
+    }
   };
+
   const deleteStudent = id => {
     dispatch({ type: 'DELETE_STUDENT', payload: id });
   };
@@ -47,6 +37,8 @@ export const GlobalProvider = ({ children }) => {
   return (
     <GlobalContext.Provider
       value={{
+        error: state.error,
+        loading: state.loading,
         students: state.students,
         deleteStudent,
         addStudent,

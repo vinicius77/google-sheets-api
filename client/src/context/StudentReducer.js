@@ -42,7 +42,10 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case 'GET_STUDENTS':
-      return { ...state };
+      return { ...state, loading: false, students: action.payload };
+    case 'GET_ERROR':
+      return { ...state, loading: false, error: action.payload };
+
     case 'DELETE_STUDENT':
       return {
         ...state,
