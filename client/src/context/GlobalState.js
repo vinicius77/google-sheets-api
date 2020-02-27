@@ -32,6 +32,7 @@ export const GlobalProvider = ({ children }) => {
         'http://localhost:5000/api/v2/students',
         newStudent
       );
+
       dispatch({ type: 'ADD_STUDENT', payload: response.data });
     } catch (error) {
       dispatch({ type: 'GET_ERROR', payload: `Error: ${error}` });

@@ -22,12 +22,14 @@ exports.getStudents = async (req, res, next) => {
 // @desc POST Student - React
 // @route POST /api/v2/students
 // @access Public
-
 exports.addStudent = async (req, res, next) => {
   try {
     const newStudent = req.body;
     await handleActions(newStudent, 'create');
-    res.status(200).redirect('/api/v2/students');
+    res.status(200).json({
+      success: true,
+      data: newStudent
+    });
   } catch (error) {
     return res.status(500).json({
       success: false,
