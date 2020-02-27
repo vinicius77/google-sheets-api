@@ -16,7 +16,6 @@ export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(StudentReducer, initialState);
 
   // Actions
-
   const getStudents = async () => {
     try {
       const response = await axios.get('http://localhost:5000/api/v2/students');
@@ -26,12 +25,21 @@ export const GlobalProvider = ({ children }) => {
     }
   };
 
-  const deleteStudent = id => {
-    dispatch({ type: 'DELETE_STUDENT', payload: id });
+  const addStudent = async student => {
+    try {
+      const newStudent = await student;
+      const response = await axios.post(
+        'http://localhost:5000/api/v2/students',
+        newStudent
+      );
+      dispatch({ type: 'ADD_STUDENT', payload: response.data });
+    } catch (error) {
+      dispatch({ type: 'GET_ERROR', payload: `Error: ${error}` });
+    }
   };
 
-  const addStudent = student => {
-    dispatch({ type: 'ADD_STUDENT', payload: student });
+  const deleteStudent = id => {
+    dispatch({ type: 'DELETE_STUDENT', payload: id });
   };
 
   return (

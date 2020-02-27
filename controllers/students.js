@@ -1,18 +1,33 @@
 // Connects to the Google Sheets Document
 const GoogleMethods = require('../config/googleSheetsData');
 const students = GoogleMethods.students;
-const uuid = require('uuid');
 const handleActions = GoogleMethods.connectGoggleSheets;
 
-// @desc GET All Students
+// @desc GET All Students - React
 // @route GET /api/v2/students
 // @access Public
 exports.getStudents = async (req, res, next) => {
   try {
-    // await res.render('index', { title: 'Students', students });
     return res
       .status(200)
       .json({ success: true, count: students.length, data: students });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      error: `Server Error: ${error.message}`
+    });
+  }
+};
+
+// @desc POST Student - React
+// @route POST /api/v2/students
+// @access Public
+
+exports.addStudent = async (req, res, next) => {
+  try {
+    const newStudent = req.body;
+    await handleActions(newStudent, 'create');
+    res.status(200).redirect('/api/v2/students');
   } catch (error) {
     return res.status(500).json({
       success: false,
@@ -37,38 +52,6 @@ exports.getStudentById = async (req, res, next) => {
     } else {
       res.status(400).json(`There is no student with id ${req.params.id}.`); //Bad Request status
     }
-  } catch (error) {
-    return res.status(500).json({
-      success: false,
-      error: `Server Error: ${error.message}`
-    });
-  }
-};
-
-// @desc POST Student
-// @route POST /api/v2/student
-// @access Public
-
-exports.addStudent = async (req, res, next) => {
-  try {
-    const newStudent = {
-      id: uuid.v4(),
-      studentname: req.body.studentname,
-      gender: req.body.gender,
-      major: req.body.major,
-      homestate: req.body.homestate,
-      classlevel: req.body.classlevel,
-      extracurricularactivity: req.body.extracurricularactivity
-    };
-
-    if (!newStudent.studentname) {
-      return res.status(400).render('create', {
-        title: 'Create Student',
-        error: 'Please, Insert At Least Your Name!'
-      });
-    }
-    await handleActions(newStudent, 'create');
-    res.redirect('/api/v2/students');
   } catch (error) {
     return res.status(500).json({
       success: false,

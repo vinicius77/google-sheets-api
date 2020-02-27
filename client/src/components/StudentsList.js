@@ -25,8 +25,12 @@ const StudentsList = () => {
 
   return (
     <React.Fragment>
-      <h3>Dummy Students</h3>
-
+      <h3>Students List</h3>
+      <hr />
+      <a href="/create" className="btn btn-info">
+        Create
+      </a>
+      <hr />
       <ul>
         {students.map(student => (
           <StudentComponent key={student.id} student={student} />
