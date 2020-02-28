@@ -1,13 +1,14 @@
 import React, { useState, useContext } from 'react';
+import Loading from './Loading';
 import { GlobalContext } from '../context/GlobalState';
 import { Redirect } from 'react-router-dom';
 import uuid from 'uuid';
-import Loading from './Loading';
 
 const CreateStudent = () => {
   const [student, setStudent] = useState({});
   const { addStudent } = useContext(GlobalContext);
   const [redirect, setRedirect] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const inputHandler = event => {
     setStudent({ ...student, [event.target.name]: event.target.value });
@@ -15,6 +16,7 @@ const CreateStudent = () => {
 
   const onSubmitHandler = event => {
     event.preventDefault();
+    setLoading(true);
     const newStudent = {
       id: uuid.v4(),
       ...student
@@ -23,6 +25,7 @@ const CreateStudent = () => {
     addStudent(newStudent);
 
     setTimeout(() => {
+      setLoading(false);
       setRedirect(!redirect);
     }, 2000);
   };
@@ -30,6 +33,7 @@ const CreateStudent = () => {
   return (
     <React.Fragment>
       {redirect ? <Redirect to="/" /> : null}
+      {loading ? <Loading /> : null}
       <h1 className="text-center mb-3">Create Student </h1>
       <form onSubmit={event => onSubmitHandler(event)} className="mb-4">
         <div className="form-group">
