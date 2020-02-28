@@ -39,8 +39,17 @@ export const GlobalProvider = ({ children }) => {
     }
   };
 
-  const deleteStudent = id => {
-    dispatch({ type: 'DELETE_STUDENT', payload: id });
+  const deleteStudent = async id => {
+    try {
+      await axios.delete(
+        `http://localhost:5000/api/v2/students/delete/${id}`,
+        id
+      );
+
+      dispatch({ type: 'DELETE_STUDENT', payload: id });
+    } catch (error) {
+      dispatch({ type: 'GET_ERROR', payload: `Error: ${error}` });
+    }
   };
 
   return (

@@ -26,9 +26,26 @@ exports.addStudent = async (req, res, next) => {
   try {
     const newStudent = req.body;
     await handleActions(newStudent, 'create');
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: newStudent
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      error: `Server Error: ${error.message}`
+    });
+  }
+};
+// @desc  DELETE Student
+// @route DELETE /api/v2/students/delete/:id
+// @access Public
+exports.deleteStudent = async (req, res, next) => {
+  try {
+    const student = req.params;
+    await handleActions(student, 'delete');
+    return res.status(200).json({
+      success: true
     });
   } catch (error) {
     return res.status(500).json({
@@ -114,29 +131,6 @@ exports.updateStudent = async (req, res, next) => {
         handleActions(student, 'update');
 
         res.redirect(`/api/v2/students/${student.id}`);
-      }
-    });
-  } else {
-    res.status(400).json(`There is no student with id ${req.params.id}.`);
-  }
-};
-
-// @desc  DELETE Student
-// @route DELETE /api/v2/students/delete/:id
-// @access Public
-exports.deleteStudent = async (req, res, next) => {
-  const hasStudent = students.some(student => student.id === req.params.id);
-
-  if (hasStudent) {
-    students.forEach(student => {
-      if (student.id === req.params.id) {
-        handleActions(student, 'delete');
-        students.shift();
-        res.render('index', {
-          title: 'Students',
-          students,
-          message: 'User Was Successfully Removed!'
-        });
       }
     });
   } else {

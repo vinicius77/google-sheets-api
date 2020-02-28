@@ -10,7 +10,7 @@ const Student = ({
 }) => {
   return (
     <React.Fragment>
-      <li className='list-group-item text-right'>
+      <li className="list-group-item text-right">
         <strong>Name: </strong>
         {name}
         <strong> Gender:</strong> {gender}
@@ -18,7 +18,7 @@ const Student = ({
         <strong> Home:</strong> {homestate}
         <strong> Major: </strong> {major}
         <strong> Extra Curricular:</strong> {extracurricular}
-        <button type='submit' className='btn btn-danger ml-3'>
+        <button type="submit" className="btn btn-danger ml-3">
           X
         </button>
       </li>
