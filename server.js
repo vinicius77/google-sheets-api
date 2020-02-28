@@ -1,24 +1,16 @@
-const path = require('path');
 const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const handlebars = require('express-handlebars');
 const methodOverride = require('method-override');
-
-// Creates the server
-const app = express();
-
-// Middleware that allow Using PUT and DELETE requests coming from HTML forms
-app.use(methodOverride('_method'));
 
 // Loads the Environment Variables
 dotenv.config({ path: './config/config.env' });
 
-// // Handelbars
-app.engine('handlebars', handlebars({ defaultLayout: 'main' }));
-app.set('view engine', 'handlebars');
+// SERVER
+const app = express();
 
-// Body Parser Middleware
+// Middleware that allow Using PUT and DELETE requests coming from HTML forms
+app.use(methodOverride('_method'));
 app.use(express.json()); //Allows to use body parser (Sending an object in the body of a post request)
 app.use(express.urlencoded({ extended: false })); //Alows Send JSON in post requests
 
@@ -40,7 +32,7 @@ app.use(function(req, res, next) {
 // CORS Middleware
 app.use(cors());
 
-// Link to students routes
+// Routes
 const students = require('./routes/students');
 app.use('/api/v2/students', students);
 

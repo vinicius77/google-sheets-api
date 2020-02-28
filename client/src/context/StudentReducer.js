@@ -28,6 +28,7 @@ export default (state = initialState, action) => {
           student => student.id !== action.payload
         )
       };
+
     default:
       return state;
   }

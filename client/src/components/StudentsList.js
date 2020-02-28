@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { GlobalContext } from '../context/GlobalState';
-import StudentComponent from './StudentComponent';
+import Student from './Student';
 import Loading from './Loading';
 
 const StudentsList = () => {
@@ -33,7 +33,7 @@ const StudentsList = () => {
       <hr />
       <ul>
         {students.map(student => (
-          <StudentComponent key={student.id} student={student} />
+          <Student key={student.id} student={student} />
         ))}
       </ul>
     </React.Fragment>

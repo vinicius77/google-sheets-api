@@ -1,26 +1,26 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { GlobalContext } from '../context/GlobalState';
 
-const Student = ({
-  name,
-  gender,
-  level,
-  homestate,
-  major,
-  extracurricular
-}) => {
+const Student = ({ student }) => {
+  const { deleteStudent } = useContext(GlobalContext);
   return (
     <React.Fragment>
       <li className="list-group-item text-right">
         <strong>Name: </strong>
-        {name}
-        <strong> Gender:</strong> {gender}
-        <strong> Level:</strong> {level}
-        <strong> Home:</strong> {homestate}
-        <strong> Major: </strong> {major}
-        <strong> Extra Curricular:</strong> {extracurricular}
-        <button type="submit" className="btn btn-danger ml-3">
+        {student.studentname}
+        <strong> Gender:</strong> {student.gender}
+        <strong> Level:</strong> {student.classlevel}
+        <strong> Home:</strong> {student.homestate}
+        <strong> Major: </strong> {student.major}
+        <strong> Extra Curricular:</strong> {student.extracurricularactivity}
+        <button
+          type="submit"
+          className="btn btn-danger ml-3"
+          onClick={() => deleteStudent(student.id)}
+        >
           X
         </button>
+        <button className="btn btn-primary ml-3">Edit</button>
       </li>
     </React.Fragment>
   );
